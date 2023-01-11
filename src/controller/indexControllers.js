@@ -1,4 +1,4 @@
-const Appt = require("../models/appt");
+const {Appt} = require("../models/appt");
 const { validationResult } = require("express-validator");
 const axios = require("axios");
 

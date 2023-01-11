@@ -1,15 +1,28 @@
 const moongose = require('mongoose');
-const { Schema } = moongose;
-// const moment = require('moment-timezone');
-// const dateThailand = moment.tz(Date.now(), "Asia/Bangkok");
+const { Schema } = moongose.Schema;
 
-
-const apptSchema =  new Schema({
-  name: { type: String, required: true },
-  lastName: { type: String, required: true },
-  apptSchedule: { type: Date, required: true }, 
-  // apptHour: { type: Date, required: true },
-  // updateDate: { type: Date, default: moment.Date.now. }
+const apptSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  lastName: {
+    type: String,
+    required: true,
+  },
+  apptSchedule: {
+    type: Date,
+    required: true,
+  },
+  dni: {
+    type: Number,
+    required: true,
+    unique: true,
+  },
 });
 
-module.exports = moongose.model('Appt', apptSchema);
+const Appt = moongose.model('Appt', apptSchema);
+
+module.exports = {
+  Appt,
+}

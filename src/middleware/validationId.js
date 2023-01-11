@@ -1,7 +1,12 @@
-const express = require('express');
-const { param, validationResult } = require('express-validator')
+const { Appt } = require("../models/appt");
 
+const validateId = async (req, res, next) => {
 
-const validationId = param('id').isMongoId()
+  const appt = await Appt.findById(req.params.id);
 
-module.exports = validationId
+  appt !== null
+    ? next()
+    : res.status(500).json({ msg: "Reservation has not been found with provided id" });
+};
+
+module.exports = { validateId };
